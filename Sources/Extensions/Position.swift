@@ -8,6 +8,12 @@ public struct Position: Hashable {
   }
 }
 
+extension Position {
+  public func distance(to other: Position) -> Int {
+    abs(row - other.row) + abs(col - other.col)
+  }
+}
+
 public func +(position: Position, change: (row: Int, col: Int)) -> Position {
   Position(position.row + change.row, position.col + change.col)
 }

@@ -6,6 +6,11 @@ extension Character {
     return range.map { Character(UnicodeScalar($0)) }
   }
 
+  public static var asciiUppercase: [Character] {
+    let range = UInt8(ascii: "A")...UInt8(ascii: "Z")
+    return range.map { Character(UnicodeScalar($0)) }
+  }
+
   public var asciiUppercased: Character? {
     let uppercased = self.uppercased()
     guard uppercased.count == 1 else { return nil }
