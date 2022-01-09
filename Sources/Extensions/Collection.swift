@@ -17,9 +17,11 @@ extension Collection where Element: Hashable {
 
   // O(n)
   public func occurrenceCounts() -> [(element: Element, count: Int)] {
-    self
-      .reduce(into: [:]) { result, value in result[value, default: 0] += 1 }
-      .map { $0 }
+    occurrenceCountByElement().map { $0 }
+  }
+
+  public func occurrenceCountByElement() -> [Element: Int] {
+    self.reduce(into: [:]) { result, value in result[value, default: 0] += 1 }
   }
 
   public func leastCommon() -> Element? {
