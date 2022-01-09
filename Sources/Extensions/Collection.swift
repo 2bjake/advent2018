@@ -60,3 +60,15 @@ extension Collection where Element: Comparable {
     self.adjacentPairs().allSatisfy { first, second in first <= second }
   }
 }
+
+extension Collection where Element: Equatable {
+  public func matchingPrefix(of other: Self) -> SubSequence {
+    var selfIdx = self.startIndex
+    var otherIdx = other.startIndex
+    while selfIdx < self.endIndex && otherIdx < other.endIndex && self[selfIdx] == other[otherIdx] {
+      selfIdx = self.index(after: selfIdx)
+      otherIdx = other.index(after: otherIdx)
+    }
+    return self[startIndex..<selfIdx]
+  }
+}
